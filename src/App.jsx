@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
 
-const API = "http://localhost:8080/api/repairs";
-const AUTH = "http://localhost:8080/api/auth";
-
+const API = "https://repairhub-backend-live.onrender.com/api/repairs";
+const AUTH = "https://repairhub-backend-live.onrender.com/api/auth";
 const EMPTY = {
   customer: "",
   device: "",
