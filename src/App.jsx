@@ -85,35 +85,23 @@ function App() {
     }
   }
 
- useEffect(() => {
-  let mounted = true;
+  useEffect(() => {
+    request(`${AUTH}/session`)
+      .then((data) => {
+        const active =
+          data?.authenticated === true ||
+          data?.loggedIn === true ||
+          Boolean(data?.username || data?.principal);
 
-  request(`${AUTH}/session`)
-    .then((data) => {
-      if (!mounted) return;
+        setLoggedIn(active);
+        setUsername(data?.username || data?.principal || "");
+      })
+      .catch(() => {
+        setLoggedIn(false);
+      })
+      .finally(() => setChecking(false));
+  }, []);
 
-      const name = data?.username || data?.principal || "";
-      const active =
-        (data?.authenticated === true || data?.loggedIn === true) &&
-        name !== "" &&
-        name !== "anonymousUser";
-
-      setLoggedIn(active);
-      setUsername(active ? name : "");
-    })
-    .catch(() => {
-      if (!mounted) return;
-      setLoggedIn(false);
-      setUsername("");
-    })
-    .finally(() => {
-      if (mounted) setChecking(false);
-    });
-
-  return () => {
-    mounted = false;
-  };
-}, []);
   useEffect(() => {
     if (loggedIn) {
       loadRepairs();
