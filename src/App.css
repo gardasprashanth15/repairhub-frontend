@@ -1,0 +1,36 @@
+
+/* ADMIN SETTINGS PAGES */
+
+.settings-panel {
+  width: 100%;
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+.settings-panel form {
+  width: 100%;
+}
+
+.settings-panel .primary-button {
+  min-width: 160px;
+}
+
+.nav-label:not(:first-of-type) {
+  margin-top: 22px;
+}
+
+.nav-item:disabled,
+.primary-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+@media (max-width: 520px) {
+  .settings-panel {
+    padding: 18px;
+  }
+
+  .settings-panel .primary-button {
+    width: 100%;
+  }
+}
